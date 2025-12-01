@@ -2,9 +2,9 @@ name: Node.js CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "/webapp" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "/webapp" ]
 
 jobs:
   build-test:
