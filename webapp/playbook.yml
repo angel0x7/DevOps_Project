@@ -1,0 +1,43 @@
+- hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Node.js + npm
+      apt:
+        name:
+          - nodejs
+          - npm
+        state: present
+
+    - name: Install Redis
+      apt:
+        name: redis-server
+        state: present
+
+    - name: Start Redis
+      service:
+        name: redis-server
+        state: started
+        enabled: yes
+
+    - name: Install dependencies
+      command: npm install
+      args:
+        chdir: /vagrant
+
+    - name: Start application
+      command: node server.js
+      args:
+        chdir: /vagrant
+      async: 0
+      poll: 0
+
+    - name: Health check
+      uri:
+        url: http://localhost:3000/health
+        status_code: 200
