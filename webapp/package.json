@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/angel0x7/DevOps_Project#readme",
   "dependencies": {
+    "ansible": "^0.1.1-alpha1",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "redis": "^5.10.0"
